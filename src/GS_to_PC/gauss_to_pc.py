@@ -12,13 +12,13 @@ from math import cos, sin, pi, sqrt, tan, ceil, exp, floor
 from torch.distributions.multivariate_normal import MultivariateNormal
 from typing import NamedTuple
 
-from gauss_handler import Gaussians
+from GS_to_PC.gauss_handler import Gaussians
 
-from transform_dataloader import load_transform_data
-from gauss_dataloader import load_gaussians, save_xyz_to_ply
+from GS_to_PC.transform_dataloader import load_transform_data
+from GS_to_PC.gauss_dataloader import load_gaussians, save_xyz_to_ply
 
-from gauss_render import GaussRenderer
-from camera_handler import Camera
+from GS_to_PC.gauss_render import GaussRenderer
+from GS_to_PC.camera_handler import Camera
 
 COLOR_QUALITY_OPTIONS = {"tiny": 180, "low": 360, "medium": 720, "high": 1280, "ultra": 1920}
 
@@ -612,7 +612,7 @@ def main():
     if args.clean_pointcloud:
         print("Cleaning Point Cloud")
 
-        from mesh_handler import clean_point_cloud
+        from GS_to_PC.mesh_handler import clean_point_cloud
 
         # Clean point cloud using Open3D
         cleaned_points, cleaned_colours, cleaned_normals = clean_point_cloud(total_point_cloud.points, total_point_cloud.colours, 
@@ -639,7 +639,7 @@ def main():
     if pointcloud_settings.generate_mesh:
         print("Generating Mesh")
 
-        from mesh_handler import generate_mesh
+        from GS_to_PC.mesh_handler import generate_mesh
 
         # Generate and save mesh using Open3D
         generate_mesh(surface_point_cloud.points, surface_point_cloud.colours, surface_point_cloud.normals, args.mesh_output_path, 
